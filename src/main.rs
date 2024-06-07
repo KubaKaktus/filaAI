@@ -21,8 +21,6 @@ fn mama(){
    println!("Furt šlape?");
 }
 
-
-
 fn tricet5(){
    let mut string: String = String::new();
    println!("Řekni 35");
@@ -31,12 +29,15 @@ fn tricet5(){
    println!("Jdi do píči {string}");
 }
 
+
 fn main() {
-   let rng: i8 = rand::thread_rng().gen_range(1..=2);
+   let rng: i8 = rand::thread_rng().gen_range(1..=3);
    match rng {
       1 => mama(),
+      2 => println!("Ti takovou napalim že us se nopoasdíš"),
       _ => tricet5(),
    }
+
    let mut input: String = String::new();
    io::stdin().read_line(&mut input).unwrap();
 
