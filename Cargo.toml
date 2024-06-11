@@ -1,10 +1,11 @@
 [package]
 name = "Fila"
-version = "0.1.0"
+version = "0.2.1"
 edition = "2021"
 build = "build.rs"
 
 [dependencies]
+clearscreen = "3.0.0"
 rand = "0.8.5"
 
 [build-dependencies]
