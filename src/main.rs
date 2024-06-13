@@ -1,5 +1,6 @@
 use std::io;   
 use rand::Rng;
+use std::env;
 //use colored::Colorize;
 
 
@@ -13,6 +14,21 @@ fn end(end:String){
    }
 }
 
+fn sound(track : &str){
+   // use std::fs::File;
+   // use std::io::BufReader;
+   // use rodio::{Decoder, OutputStream, source::Source};
+
+   // // Get an output stream handle to the default physical sound device
+   // let (_stream, stream_handle) = OutputStream::try_default().unwrap();
+   
+   
+   // let file = BufReader::new(File::open(track).unwrap());
+   // let source = Decoder::new(file).unwrap();
+   // let _ = stream_handle.play_raw(source.convert_samples());
+   // std::thread::sleep(std::time::Duration::from_secs(5));
+
+}
 
 //Zepta se jestli mama slape
 fn mama(){
@@ -43,40 +59,45 @@ fn sibir(){
 
 }
 
-fn main() {
-        clearscreen::clear().expect("failed to clear screen");
-
-        println!(r#"
-        ███████ ██ ██      ██ ██████  
-        ██      ██ ██      ██ ██   ██ 
-        █████   ██ ██      ██ ██████  
-        ██      ██ ██      ██ ██      
-        ██      ██ ███████ ██ ██      
-                                      
-                                      
-            "#);
-                       
+fn chat(){
    let rng: i8 = rand::thread_rng().gen_range(1..=12);
    match rng {
-      1 => mama(),
-      2 => println!("Ti takovou napalim že us se nenapiješ"),
-      3 => println!("Hmm."),
-      4 => println!("Ty seš fakt charakter."),
-      5 => println!("To je hafo dobrý"),
-      6 => println!("Ty mrrrdko"),
-      7 => println!("Ty zmrde"),
-      8 => println!("Ty jsi píči a už se nenapiješ."),
-      9 => println!("Ty jsi píči"),
-      10 => println!("Nabí mi"),
-      11 => sibir(),
-      _ => tricet5(),
+      1 => {mama(); sound("audio/audio.ogg");},
+      2 => {println!("Ti takovou napalim že us se nenapiješ"); sound("audio/audio.ogg");},
+      3 => {println!("Hmm."); sound("audio/audio.ogg");},
+      4 => {println!("Ty seš fakt charakter."); sound("audio/audio.ogg");},
+      5 => {println!("To je hafo dobrý"); sound("audio/audio.ogg");},
+      6 => {println!("Ty mrrrdko"); sound("audio/audio.ogg");},
+      7 => {println!("Ty zmrde"); sound("audio/audio.ogg");},
+      8 => {println!("Ty jsi píči a už se nenapiješ."); sound("audio/audio.ogg");},
+      9 => {println!("Ty jsi píči"); sound("audio/audio.ogg");},
+      10 => {println!("Nabí mi"); sound("audio/audio.ogg");},
+      11 => {sibir(); sound("audio/audio.ogg");},
+      _ => {tricet5(); sound("audio/audio.ogg");},
    }
 
    let mut input: String = String::new();
    io::stdin().read_line(&mut input).unwrap();
    end(input);
-   main()
+   chat();
+}
 
-   
-    
+fn main() {
+   env::set_var("RUST_BACKTRACE", "1");
+   clearscreen::clear().expect("failed to clear screen");
+
+        println!(r#"
+        
+███    ██  ██████   ██████       █████  ██ 
+████   ██ ██       ██    ██     ██   ██ ██ 
+██ ██  ██ ██   ███ ██    ██     ███████ ██ 
+██  ██ ██ ██    ██ ██    ██     ██   ██ ██ 
+██   ████  ██████   ██████      ██   ██ ██ 
+                                           
+                                           
+
+                                      
+                                      
+            "#);
+   chat(); 
 }
